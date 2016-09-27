@@ -11,6 +11,8 @@ var width = 960,
     height = 500,
     radius = 20;
 
+const margin = { top: 0, left: 40, bottom: 0, right: 40 };
+
 var fill = d3.scale.category20();
 
 var force = d3.layout.force()
@@ -66,8 +68,23 @@ d3.json("graph.json", function(error, graph) {
       .on("tick", tick)
       .start();
 
+  const maxDepth = d3.max(graph.nodes.map(d => d.depth));
+  const chartInnerWidth = width - margin.left - margin.right;
+  const maxNodeInnerWidth = chartInnerWidth / maxDepth;
+  const nodeInnerWidth = d3.min([radius * 3, maxNodeInnerWidth]);
+  console.log('maxDepth', maxDepth);
+  console.log('chartInnerWidth', chartInnerWidth);
+  console.log('maxNodeInnerWidth', maxNodeInnerWidth);
+  console.log('nodeInnerWidth', nodeInnerWidth);
+
+  const chartMiddle = margin.left + (chartInnerWidth / 2);
+  const networkWidth = (nodeInnerWidth * maxDepth) + radius;
+
+
   function tick() {
-    node.each(function(d) { w = 105 * (1 + d.depth); d.x -= (0.2 * (d.x - w)) }) // 105
+    node.each(function(d) {
+      d.x = (nodeInnerWidth * d.depth) + chartMiddle - (networkWidth / 2);
+    })
 
     node.attr("cx", function(d) {return d.x = Math.max(radius, Math.min(width - radius, d.x)); })
         .attr("cy", function(d) {return d.y = Math.max(radius, Math.min(height - radius, d.y)); });
