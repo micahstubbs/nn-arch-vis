@@ -72,14 +72,14 @@ d3.json("graph.json", function(error, graph) {
   const chartInnerWidth = width - margin.left - margin.right;
   const maxNodeInnerWidth = chartInnerWidth / maxDepth;
   const nodeInnerWidth = d3.min([radius * 3, maxNodeInnerWidth]);
+  const chartMiddle = margin.left + (chartInnerWidth / 2);
+  const networkWidth = (nodeInnerWidth * maxDepth) + radius;
   console.log('maxDepth', maxDepth);
   console.log('chartInnerWidth', chartInnerWidth);
   console.log('maxNodeInnerWidth', maxNodeInnerWidth);
   console.log('nodeInnerWidth', nodeInnerWidth);
-
-  const chartMiddle = margin.left + (chartInnerWidth / 2);
-  const networkWidth = (nodeInnerWidth * maxDepth) + radius;
-
+  console.log('chartMiddle', chartMiddle);
+  console.log('networkWidth', networkWidth);
 
   function tick() {
     node.each(function(d) {
