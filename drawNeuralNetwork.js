@@ -21,35 +21,45 @@ var force = d3.layout.force()
     .theta(0.8)
     .alpha(0.1)
 
-var svg = d3.select("body").append("svg")
-  .attr("width", width)
-  .attr("height", height);
+var svg = d3.select('body').append('svg')
+  .attr('width', width)
+  .attr('height', height);
 
 svg.append('rect')
-  .attr("width", width)
-  .attr("height", height)
+  .attr('width', width)
+  .attr('height', height)
   .style({
     fill: 'none',
     stroke: 'black',
     'stroke-width': 1
   });
 
-d3.json("graph.json", function(error, graph) {
+d3.json('graph.json', function(error, graph) {
   if (error) throw error;
 
   graph.nodes.forEach((node, i) => {
     if (typeof node.id === 'undefined') node.id = i;
   })
   
-  var tooltip = d3.select("body")
-    .append("div")
-    .style("position", "absolute")
-    .style("z-index", "10")
-    .style("visibility", "hidden");
+  var tooltip = d3.select('body')
+    .append('div')
+    .style('position', 'absolute')
+    .style('z-index', '10')
+    .style('visibility', 'hidden');
+
+  // no self-links
+  const noSelfLinks = graph.links.filter(d => d.source !== d.target);
   
-  var link = svg.selectAll("line")
-    .data(graph.links)
-    .enter().append("line");
+  // only self-links
+  const onlySelfLinks = graph.links.filter(d => d.source === d.target);
+
+  const link = svg.selectAll('line')
+    .data(noSelfLinks)
+    .enter().append('line');
+
+  const selfLink = svg.selectAll('path')
+    .data(onlySelfLinks)
+    .enter().append('path');
 
   var node = svg.selectAll('g')
     .data(graph.nodes)
@@ -58,13 +68,13 @@ d3.json("graph.json", function(error, graph) {
       .call(force.drag);;
 
   node
-      .append("circle")
-      .attr("r", radius - .75)
-      .style("fill", function(d) { 
+      .append('circle')
+      .attr('r', radius - .75)
+      .style('fill', function(d) { 
         console.log('d from the fill function', d);
         return cellStyles[d.name].color; 
       })
-      .style("stroke", 'none')
+      .style('stroke', 'none')
 
   if (typeof drawNodeIDs !== 'undefined') {
     // draw nodeIDs 
@@ -82,7 +92,7 @@ d3.json("graph.json", function(error, graph) {
   force
       .nodes(graph.nodes)
       .links(graph.links)
-      .on("tick", tick)
+      .on('tick', tick)
       .start();
 
   const maxDepth = d3.max(graph.nodes.map(d => d.depth));
@@ -98,13 +108,31 @@ d3.json("graph.json", function(error, graph) {
   console.log('chartMiddle', chartMiddle);
   console.log('networkWidth', networkWidth);
 
+  function selfLinkCurve (cx, cy, r) {
+    const controlPointXFactor = 0.005;
+    const yOffset = 2;
+    const start = {};
+    start.x = cx + (r * Math.cos(0.685 * 2 * Math.PI));
+    start.y = cy + (r * Math.sin(0.685 * 2 * Math.PI)) + yOffset;
+    const end = {};
+    end.x = cx + (r * Math.cos(0.825 * 2 * Math.PI));
+    end.y = cy + (r * Math.sin(0.825 * 2 * Math.PI)) + yOffset;
+    const c1 = {};
+    c1.x = start.x * (1 - controlPointXFactor)
+    c1.y = start.y - (r * 0.9);
+    const c2 = {};
+    c2.x = end.x * (1 + controlPointXFactor);
+    c2.y = end.y - (r * 0.9);
+    return `M${start.x} ${start.y} C ${c1.x} ${c1.y}, ${c2.x} ${c2.y}, ${end.x} ${end.y}`;
+  }
+
   function tick() {
     node.each(function(d) {
       d.x = (nodeInnerWidth * d.depth) + chartMiddle - (networkWidth / 2);
     })
 
-    // node.attr("x", function(d) {return d.x = Math.max(radius, Math.min(width - radius, d.x)); })
-    //    .attr("y", function(d) {return d.y = Math.max(radius, Math.min(height - radius, d.y)); });
+    // node.attr('x', function(d) {return d.x = Math.max(radius, Math.min(width - radius, d.x)); })
+    //    .attr('y', function(d) {return d.y = Math.max(radius, Math.min(height - radius, d.y)); });
   
     node.attr('transform', d => {
       return `translate(
@@ -113,29 +141,37 @@ d3.json("graph.json", function(error, graph) {
       )`
     })      
 
-    link.attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
+    link.attr('x1', function(d) { return d.source.x; })
+        .attr('y1', function(d) { return d.source.y; })
+        .attr('x2', function(d) { return d.target.x; })
+        .attr('y2', function(d) { return d.target.y; });
 
     link
       .style('stroke', '#999')
       .style('stroke-width', '3px');
+
+    selfLink
+      .attr('d', d => selfLinkCurve(d.source.x, d.source.y, radius));
+
+    selfLink
+      .style('stroke', '#999')
+      .style('stroke-width', '3px')
+      .style('fill', 'none');
   }
   
   node
-    .on("mouseover", function(d){
+    .on('mouseover', function(d){
       return tooltip
         .text(d.name)
-        .style("visibility", "visible");
+        .style('visibility', 'visible');
     })
-    .on("mousemove", function(){
+    .on('mousemove', function(){
       return tooltip
-        .style("top", (event.pageY - 10) + "px")
-        .style("left",(event.pageX + 10) + "px");
+        .style('top', (event.pageY - 10) + 'px')
+        .style('left',(event.pageX + 10) + 'px');
     })
-    .on("mouseout", function(){
+    .on('mouseout', function(){
       return tooltip
-        .style("visibility", "hidden")
+        .style('visibility', 'hidden')
     });
 });
