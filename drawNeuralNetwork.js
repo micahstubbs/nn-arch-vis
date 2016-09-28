@@ -68,21 +68,36 @@ d3.json('graph.json', function(error, graph) {
       .call(force.drag);;
 
   node
-      .append('circle')
-      .attr('r', radius - .75)
-      .style('fill', function(d) { 
-        console.log('d from the fill function', d);
-        return cellStyles[d.name].color; 
-      })
-      .style('stroke', 'none')
+    .append('circle')
+    .attr('r', radius - 0.75)
+    .style('fill', function(d) { 
+      console.log('d from the fill function', d);
+      return cellStyles[d.name].color; 
+    })
+    .style('stroke', 'none')
+
+  node
+    .each(function (d) {
+      if (typeof cellStyles[d.name].shape !== 'undefined') {
+        if (cellStyles[d.name].shape === 'circle') {
+          d3.select(this)
+            .append('circle')
+            .attr('r', radius - 8)
+            .style('fill', 'none')
+            .style('stroke', '#999')
+            .style('stroke-width', '3px');
+        }
+      }
+    })
 
   if (typeof drawNodeIDs !== 'undefined') {
     // draw nodeIDs 
     node
       .append('text')
       .style('stroke', 'black')
+      .style('fill', 'black')
       .attr('dx', d => {
-        if (d.id < 10) return '-0.20em';
+        if (d.id < 10) return '-0.265em';
         return '-0.45em'
       })
       .attr('dy', '0.35em')
