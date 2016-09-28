@@ -3,13 +3,18 @@
 <style>
 </style>
 <body>
-<script src="//d3js.org/d3.v3.min.js"></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.10.3/babel.min.js'></script>
+<script src='d3.v3.min.js'></script>
+<script src='babel.min.js'></script>
 <script src='cellStyles.js'></script>
 <script>
+// scripts online
+// '//d3js.org/d3.v3.min.js'
+// 'https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.10.3/babel.min.js'
 var width = 960,
     height = 500,
     radius = 20;
+
+const showNodeIDs = true;
 
 const margin = { top: 0, left: 40, bottom: 0, right: 40 };
 
@@ -40,6 +45,10 @@ svg.append('rect')
 
 d3.json("graph.json", function(error, graph) {
   if (error) throw error;
+
+  graph.nodes.forEach((node, i) => {
+    if (typeof node.id === 'undefined') node.id = i;
+  })
   
   var tooltip = d3.select("body")
 		.append("div")
@@ -52,8 +61,12 @@ d3.json("graph.json", function(error, graph) {
     .enter().append("line");
 
   var node = svg.selectAll("circle")
-      .data(graph.nodes)
-    .enter().append("circle")
+    .data(graph.nodes)
+    .enter().append('g')
+      .classed('node', true);
+
+  node
+      .append("circle")
       .attr("r", radius - .75)
       .style("fill", function(d) { 
         console.log('d from the fill function', d);
@@ -61,6 +74,17 @@ d3.json("graph.json", function(error, graph) {
       })
       .style("stroke", 'none')
       .call(force.drag);
+
+  if (typeof showNodeIDs !== 'undefined') {
+    // draw nodeIDs 
+    node
+      .append('text')
+      .style('stroke', 'black')
+      .attr('dx', '-0.15em')
+      .attr('dy', '0.35em')
+      .text(d => d.id);
+  }
+
 
   force
       .nodes(graph.nodes)
@@ -86,9 +110,15 @@ d3.json("graph.json", function(error, graph) {
       d.x = (nodeInnerWidth * d.depth) + chartMiddle - (networkWidth / 2);
     })
 
-    node.attr("cx", function(d) {return d.x = Math.max(radius, Math.min(width - radius, d.x)); })
-        .attr("cy", function(d) {return d.y = Math.max(radius, Math.min(height - radius, d.y)); });
-        
+    // node.attr("x", function(d) {return d.x = Math.max(radius, Math.min(width - radius, d.x)); })
+    //    .attr("y", function(d) {return d.y = Math.max(radius, Math.min(height - radius, d.y)); });
+  
+    node.attr('transform', d => {
+      return `translate(
+        ${Math.max(radius, Math.min(width - radius, d.x))},
+        ${Math.max(radius, Math.min(height - radius, d.y))}
+      )`
+    })      
 
     link.attr("x1", function(d) { return d.source.x; })
         .attr("y1", function(d) { return d.source.y; })
