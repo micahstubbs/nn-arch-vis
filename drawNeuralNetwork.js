@@ -110,7 +110,7 @@ d3.json('graph.json', function(error, graph) {
 
   function selfLinkCurve (cx, cy, r) {
     const controlPointXFactor = 0.005;
-    const yOffset = 2;
+    const yOffset = r / 10;
     const start = {};
     start.x = cx + (r * Math.cos(0.685 * 2 * Math.PI));
     start.y = cy + (r * Math.sin(0.685 * 2 * Math.PI)) + yOffset;
