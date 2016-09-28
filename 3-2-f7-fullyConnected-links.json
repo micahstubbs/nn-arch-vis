@@ -1,0 +1,32 @@
+[
+  {
+    "source": 7,
+    "target": 9,
+    "value": 1
+  },
+  {
+    "source": 7,
+    "target": 10,
+    "value": 1
+  },
+  {
+    "source": 8,
+    "target": 9,
+    "value": 1
+  },
+  {
+    "source": 8,
+    "target": 10,
+    "value": 1
+  },
+  {
+    "source": 9,
+    "target": 9,
+    "value": 1
+  },
+  {
+    "source": 9,
+    "target": 10,
+    "value": 1
+  }
+]

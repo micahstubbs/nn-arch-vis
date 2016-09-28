@@ -1,0 +1,30 @@
+{
+  "name": "nn-arch-vis",
+  "version": "1.0.0",
+  "description": "visualizations of neural network architectures",
+  "main": "drawNeuralNetwork.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/micahstubbs/nn-arch-vis.git"
+  },
+  "keywords": [
+    "neural",
+    "network",
+    "d3",
+    "architecture",
+    "vis",
+    "visualization"
+  ],
+  "author": "@micahstubbs <micahstubbs@gmail.com> (https://github.com/micahstubbs)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/micahstubbs/nn-arch-vis/issues"
+  },
+  "homepage": "https://github.com/micahstubbs/nn-arch-vis#readme",
+  "dependencies": {
+    "jsonfile": "^2.4.0"
+  }
+}

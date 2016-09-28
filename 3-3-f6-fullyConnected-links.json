@@ -1,0 +1,47 @@
+[
+  {
+    "source": 6,
+    "target": 9,
+    "value": 1
+  },
+  {
+    "source": 6,
+    "target": 10,
+    "value": 1
+  },
+  {
+    "source": 6,
+    "target": 11,
+    "value": 1
+  },
+  {
+    "source": 7,
+    "target": 9,
+    "value": 1
+  },
+  {
+    "source": 7,
+    "target": 10,
+    "value": 1
+  },
+  {
+    "source": 7,
+    "target": 11,
+    "value": 1
+  },
+  {
+    "source": 8,
+    "target": 9,
+    "value": 1
+  },
+  {
+    "source": 8,
+    "target": 10,
+    "value": 1
+  },
+  {
+    "source": 8,
+    "target": 11,
+    "value": 1
+  }
+]
