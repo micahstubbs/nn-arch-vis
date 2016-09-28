@@ -14,7 +14,7 @@ var width = 960,
     height = 500,
     radius = 20;
 
-const showNodeIDs = true;
+const drawNodeIDs = undefined;
 
 const margin = { top: 0, left: 40, bottom: 0, right: 40 };
 
@@ -75,7 +75,7 @@ d3.json("graph.json", function(error, graph) {
       .style("stroke", 'none')
       .call(force.drag);
 
-  if (typeof showNodeIDs !== 'undefined') {
+  if (typeof drawNodeIDs !== 'undefined') {
     // draw nodeIDs 
     node
       .append('text')
@@ -84,7 +84,6 @@ d3.json("graph.json", function(error, graph) {
       .attr('dy', '0.35em')
       .text(d => d.id);
   }
-
 
   force
       .nodes(graph.nodes)
