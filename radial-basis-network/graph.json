@@ -1,0 +1,61 @@
+{  
+   "nodes":[  
+      {  
+         "name":"Input Cell",
+         "id": 0,
+         "depth": 0
+      },
+      {  
+         "name":"Input Cell",
+         "id": 1,
+         "depth": 0
+      },
+      {  
+         "name":"Hidden Cell",
+         "id": 2,
+         "depth": 1
+      },
+      {  
+         "name":"Hidden Cell",
+         "id": 3,
+         "depth": 1
+      },
+      {  
+         "name":"Output Cell",
+         "id": 4,
+         "depth": 2
+      }
+   ],
+   "links":[  
+      {  
+         "source": 0,
+         "target": 2,
+         "value": 1
+      },
+      {  
+         "source": 0,
+         "target": 3,
+         "value": 1
+      },
+      {  
+         "source": 1,
+         "target": 2,
+         "value": 1
+      },
+      {  
+         "source": 1,
+         "target": 3,
+         "value": 1
+      },
+      {  
+         "source": 2,
+         "target": 4,
+         "value": 1
+      },
+      {  
+         "source": 3,
+         "target": 4,
+         "value": 1
+      }
+   ]
+}

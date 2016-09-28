@@ -1,0 +1,88 @@
+{  
+   "nodes":[  
+      {  
+         "name":"Input Cell",
+         "depth": 0
+      },
+      {  
+         "name":"Input Cell",
+         "depth": 0
+      },
+      {  
+         "name":"Input Cell",
+         "depth": 0
+      },
+      {  
+         "name":"Hidden Cell",
+         "depth": 1
+      },
+      {  
+         "name":"Hidden Cell",
+         "depth": 1
+      },
+      {  
+         "name":"Hidden Cell",
+         "depth": 1
+      },
+      {  
+         "name":"Hidden Cell",
+         "depth": 1
+      },
+      {  
+         "name":"Hidden Cell",
+         "depth": 2
+      },
+      {  
+         "name":"Hidden Cell",
+         "depth": 2
+      },
+      {  
+         "name":"Hidden Cell",
+         "depth": 2
+      },
+      {  
+         "name":"Hidden Cell",
+         "depth": 2
+      },
+      {  
+         "name":"Output Cell",
+         "depth": 3
+      },
+      {  
+         "name":"Output Cell",
+         "depth": 3
+      }
+   ],
+   "links":[  
+      {  
+         "source": 0,
+         "target": 2,
+         "value": 1
+      },
+      {  
+         "source": 0,
+         "target": 3,
+         "value": 1
+      },
+      {  
+         "source": 1,
+         "target": 2,
+         "value": 1
+      },
+      {  
+         "source": 1,
+         "target": 3,
+         "value": 1
+      },
+      {  
+         "source": 2,
+         "target": 4,
+         "value": 1
+      },
+      {  
+         "source": 3,
+         "target": 4,
+         "value": 1
+      }
+   ]
+}
