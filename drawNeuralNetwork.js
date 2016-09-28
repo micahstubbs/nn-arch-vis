@@ -5,7 +5,7 @@ var width = 960,
     height = 500,
     radius = 20;
 
-const drawNodeIDs = true;
+const drawNodeIDs = undefined;
 
 const margin = { top: 0, left: 40, bottom: 0, right: 40 };
 
@@ -76,16 +76,30 @@ d3.json('graph.json', function(error, graph) {
     })
     .style('stroke', 'none')
 
+  // draw shapes if specified
   node
     .each(function (d) {
       if (typeof cellStyles[d.name].shape !== 'undefined') {
-        if (cellStyles[d.name].shape === 'circle') {
-          d3.select(this)
-            .append('circle')
-            .attr('r', radius - 8)
-            .style('fill', 'none')
-            .style('stroke', '#999')
-            .style('stroke-width', '3px');
+        switch(cellStyles[d.name].shape) {
+          case 'circle':
+            d3.select(this)
+              .append('circle')
+              .attr('r', radius - 8)
+              .style('fill', 'none')
+              .style('stroke', '#999')
+              .style('stroke-width', '3px');
+            break;
+          case 'triangle':
+            const triangle = d3.svg.symbol().type('triangle-up')
+              .size(function(d){ return radius * 12; });
+            d3.select(this)
+              .append('path')
+              .style('fill', 'none')
+              .style('stroke', '#999')
+              .style('stroke-width', '3px')
+              .attr('d', triangle)
+              .attr('transform', `translate(0,${-2})`)
+          default:
         }
       }
     })
