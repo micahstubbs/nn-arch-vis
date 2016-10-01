@@ -1,5 +1,5 @@
-var fs = require('fs');
-var jsonfile = require('jsonfile');
+const fs = require('fs');
+const jsonfile = require('jsonfile');
 
 const firstNodeInLayerID = 6;
 const sourceLayerNodeCount = 3;
@@ -12,7 +12,7 @@ if (connectedness === 'fullyConnected') {
   for (let i = 0; i < sourceLayerNodeCount; i++) {
     const sourceNodeID = firstNodeInLayerID + i;
     for(let j = 0; j < targetLayerNodeCount; j++) {
-      const targetNodeID = firstNodeInLayerID + targetLayerNodeCount + j;
+      const targetNodeID = firstNodeInLayerID + sourceLayerNodeCount + j;
       links.push({
         source: sourceNodeID,
         target: targetNodeID,

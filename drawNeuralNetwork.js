@@ -5,7 +5,7 @@ var width = 960,
     height = 500,
     radius = 20;
 
-const drawNodeIDs = undefined;
+const drawNodeIDs = true;
 
 const margin = { top: 0, left: 40, bottom: 0, right: 40 };
 
