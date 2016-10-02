@@ -1,7 +1,7 @@
 const fs = require('fs');
 const jsonfile = require('jsonfile');
 
-const networkType = 'denoising-auto-encoder';
+const networkType = 'sparse-auto-encoder';
 const connectedness = 'fullyConnected';
 const inputFile = `${networkType}/layers.json`;
 const layers = JSON.parse(fs.readFileSync(inputFile, 'utf8'));
