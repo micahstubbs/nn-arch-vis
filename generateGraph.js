@@ -1,7 +1,7 @@
 const fs = require('fs');
 const jsonfile = require('jsonfile');
 
-const networkType = 'restricted-boltzmann-machine';
+const networkType = 'deep-belief-network';
 const connectedness = 'fullyConnected';
 const inputFile = `${networkType}/layers.json`;
 const layers = JSON.parse(fs.readFileSync(inputFile, 'utf8'));
@@ -42,7 +42,9 @@ function generateLinks(sourceLayer, targetLayer) {
   if (shallowerLayers.length === 1) {
     firstNodeInLayerID = shallowerLayers[0].nodeCount;
   } else {
-    firstNodeInLayerID = shallowerLayers.reduce((a, b) => a.nodeCount + b.nodeCount, 0);
+    firstNodeInLayerID = shallowerLayers
+      .map(d => d.nodeCount)
+      .reduce((a, b) => a + b, 0);
   }
   console.log('firstNodeInLayerID', firstNodeInLayerID);
 
