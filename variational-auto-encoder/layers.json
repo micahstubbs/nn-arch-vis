@@ -1,0 +1,17 @@
+[
+  {
+    "depth": 0,
+    "nodeType": "Input Cell",
+    "nodeCount": 4
+  },
+  {
+    "depth": 1,
+    "nodeType": "Probabilistic Hidden Cell",
+    "nodeCount": 4
+  },
+  {
+    "depth": 2,
+    "nodeType": "Match Input Output Cell",
+    "nodeCount": 4
+  }
+]
