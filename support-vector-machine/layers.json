@@ -1,0 +1,22 @@
+[
+  {
+    "depth": 0,
+    "nodeType": "Input Cell",
+    "nodeCount": 3
+  },
+  {
+    "depth": 1,
+    "nodeType": "Hidden Cell",
+    "nodeCount": 3
+  },
+  {
+    "depth": 2,
+    "nodeType": "Hidden Cell",
+    "nodeCount": 3
+  },
+  {
+    "depth": 3,
+    "nodeType": "Output Cell",
+    "nodeCount": 1
+  }
+]
