@@ -1,0 +1,47 @@
+[
+  {
+    "depth": 0,
+    "nodeType": "Input Cell",
+    "nodeCount": 2
+  },
+  {
+    "depth": 1,
+    "nodeType": "Hidden Cell",
+    "nodeCount": 2
+  },
+  {
+    "depth": 2,
+    "nodeType": "Hidden Cell",
+    "nodeCount": 2
+  },
+  {
+    "depth": 3,
+    "nodeType": "Hidden Cell",
+    "nodeCount": 2
+  },
+  {
+    "depth": 4,
+    "nodeType": "Hidden Cell",
+    "nodeCount": 2
+  },
+  {
+    "depth": 5,
+    "nodeType": "Hidden Cell",
+    "nodeCount": 2
+  },
+  {
+    "depth": 6,
+    "nodeType": "Hidden Cell",
+    "nodeCount": 2
+  },
+  {
+    "depth": 7,
+    "nodeType": "Hidden Cell",
+    "nodeCount": 2
+  },
+  {
+    "depth": 8,
+    "nodeType": "Output Cell",
+    "nodeCount": 2
+  }
+]
