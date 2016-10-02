@@ -1,0 +1,37 @@
+[
+  {
+    "depth": 0,
+    "nodeType": "Backfed Input Cell",
+    "nodeCount": 3
+  },
+  {
+    "depth": 1,
+    "nodeType": "Hidden Cell",
+    "nodeCount": 3
+  },
+  {
+    "depth": 2,
+    "nodeType": "Hidden Cell",
+    "nodeCount": 3
+  },
+  {
+    "depth": 3,
+    "nodeType": "Match Input Output Cell",
+    "nodeCount": 3
+  },
+  {
+    "depth": 4,
+    "nodeType": "Hidden Cell",
+    "nodeCount": 3
+  },
+  {
+    "depth": 5,
+    "nodeType": "Hidden Cell",
+    "nodeCount": 3
+  },
+  {
+    "depth": 6,
+    "nodeType": "Match Input Output Cell",
+    "nodeCount": 2
+  }
+]
