@@ -211,7 +211,7 @@ d3.json('graph.json', function(error, graph) {
   let nodeTextVisible = drawNodeIDs;
 
   svg
-    .on("click", () => {
+    .on("dblclick", () => {
       let newOpacity;
       // set the new opacity 
       // then
