@@ -1,7 +1,7 @@
 const fs = require('fs');
 const jsonfile = require('jsonfile');
 
-const networkType = 'deep-belief-network';
+const networkType = 'deep-convolutional-network';
 const connectedness = 'fullyConnected';
 const inputFile = `${networkType}/layers.json`;
 const layers = JSON.parse(fs.readFileSync(inputFile, 'utf8'));

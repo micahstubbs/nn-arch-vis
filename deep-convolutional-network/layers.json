@@ -1,0 +1,42 @@
+[
+  {
+    "depth": 0,
+    "nodeType": "Input Cell",
+    "nodeCount": 5
+  },
+  {
+    "depth": 1,
+    "nodeType": "Scanning Filter",
+    "nodeCount": 5
+  },
+  {
+    "depth": 2,
+    "nodeType": "Convolution",
+    "nodeCount": 4
+  },
+  {
+    "depth": 3,
+    "nodeType": "Convolution",
+    "nodeCount": 3
+  },
+  {
+    "depth": 4,
+    "nodeType": "Convolution",
+    "nodeCount": 2
+  },
+  {
+    "depth": 5,
+    "nodeType": "Hidden Cell",
+    "nodeCount": 4
+  },
+  {
+    "depth": 6,
+    "nodeType": "Hidden Cell",
+    "nodeCount": 4
+  },
+  {
+    "depth": 7,
+    "nodeType": "Output Cell",
+    "nodeCount": 3
+  }
+]

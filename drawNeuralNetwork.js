@@ -130,6 +130,7 @@ d3.json('graph.json', function(error, graph) {
 
   const maxDepth = d3.max(graph.nodes.map(d => d.depth));
   const chartInnerWidth = width - margin.left - margin.right;
+  const chartInnerHeight = height - margin.top - margin.bottom;
   const maxNodeInnerWidth = chartInnerWidth / maxDepth;
   const nodeInnerWidth = d3.min([radius * 3, maxNodeInnerWidth]);
   const chartMiddle = margin.left + (chartInnerWidth / 2);
@@ -160,8 +161,16 @@ d3.json('graph.json', function(error, graph) {
   }
 
   function tick() {
+    // const maxLayerNodeCount = 5
+    // const maxNodeInnerHeight = chartInnerWidth / maxLayerNodeCount;
+    // const nodeInnerWidth = d3.min([radius * 3, maxNodeInnerWidth]);
+    
     node.each(function(d) {
+      // overwrite d.x position set by the force layout
       d.x = (nodeInnerWidth * d.depth) + chartMiddle - (networkWidth / 2);
+
+      // overwrite the d.y position set by the force layout
+      // d.y = 162;
     })
 
     // node.attr('x', function(d) {return d.x = Math.max(radius, Math.min(width - radius, d.x)); })
