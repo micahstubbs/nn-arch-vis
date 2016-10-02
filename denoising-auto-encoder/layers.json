@@ -1,0 +1,17 @@
+[
+  {
+    "depth": 0,
+    "nodeType": "Noisy Input Cell",
+    "nodeCount": 4
+  },
+  {
+    "depth": 1,
+    "nodeType": "Hidden Cell",
+    "nodeCount": 4
+  },
+  {
+    "depth": 2,
+    "nodeType": "Match Input Output Cell",
+    "nodeCount": 4
+  }
+]
