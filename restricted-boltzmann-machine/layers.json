@@ -1,0 +1,12 @@
+[
+  {
+    "depth": 0,
+    "nodeType": "Backfed Input Cell",
+    "nodeCount": 3
+  },
+  {
+    "depth": 1,
+    "nodeType": "Probabilistic Hidden Cell",
+    "nodeCount": 4
+  }
+]
