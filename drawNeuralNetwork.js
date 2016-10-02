@@ -12,14 +12,14 @@ const margin = { top: 0, left: 40, bottom: 0, right: 40 };
 var fill = d3.scale.category20();
 
 var force = d3.layout.force()
-    .gravity(0.05)
-    .charge(-50) // -50
-    .linkDistance(50)
-    .size([width, height])
-    .linkStrength(0.005)
-    .friction(0.9)
-    .theta(0.8)
-    .alpha(0.1)
+  .gravity(0.05)
+  .charge(-50) // -50
+  .linkDistance(50)
+  .size([width, height])
+  .linkStrength(0.005)
+  .friction(0.9)
+  .theta(0.8)
+  .alpha(0.1)
 
 var svg = d3.select('body').append('svg')
   .attr('width', width)
@@ -108,6 +108,7 @@ d3.json('graph.json', function(error, graph) {
     // draw nodeIDs 
     node
       .append('text')
+      .classed('nodeText', true)
       .style('stroke', 'black')
       .style('fill', 'black')
       .attr('dx', d => {
@@ -119,10 +120,10 @@ d3.json('graph.json', function(error, graph) {
   }
 
   force
-      .nodes(graph.nodes)
-      .links(graph.links)
-      .on('tick', tick)
-      .start();
+    .nodes(graph.nodes)
+    .links(graph.links)
+    .on('tick', tick)
+    .start();
 
   const maxDepth = d3.max(graph.nodes.map(d => d.depth));
   const chartInnerWidth = width - margin.left - margin.right;
@@ -162,7 +163,7 @@ d3.json('graph.json', function(error, graph) {
 
     // node.attr('x', function(d) {return d.x = Math.max(radius, Math.min(width - radius, d.x)); })
     //    .attr('y', function(d) {return d.y = Math.max(radius, Math.min(height - radius, d.y)); });
-  
+
     node.attr('transform', d => {
       return `translate(
         ${Math.max(radius, Math.min(width - radius, d.x))},
@@ -203,4 +204,21 @@ d3.json('graph.json', function(error, graph) {
       return tooltip
         .style('visibility', 'hidden')
     });
+
+  let nodeTextVisible = drawNodeIDs;
+
+  svg
+    .on("click", () => {
+      let newOpacity = nodeTextVisible ? 1 : 0; 
+      // Hide or show the elements based on the ID
+      d3.selectAll('.nodeText')
+          .transition().duration(100) 
+          .style("opacity", newOpacity);
+      // Update whether or not the node text is visible
+      if (nodeTextVisible) {
+        nodeTextVisible = false;
+      } else {
+        nodeTextVisible = true;
+      }
+  });
 });
