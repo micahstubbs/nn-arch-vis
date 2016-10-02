@@ -5,7 +5,7 @@ var width = 960,
     height = 500,
     radius = 20;
 
-const drawNodeIDs = true;
+const drawNodeIDs = undefined;
 
 const margin = { top: 0, left: 40, bottom: 0, right: 40 };
 
@@ -104,20 +104,23 @@ d3.json('graph.json', function(error, graph) {
       }
     })
 
-  if (typeof drawNodeIDs !== 'undefined') {
-    // draw nodeIDs 
-    node
-      .append('text')
-      .classed('nodeText', true)
-      .style('stroke', 'black')
-      .style('fill', 'black')
-      .attr('dx', d => {
-        if (d.id < 10) return '-0.265em';
-        return '-0.45em'
-      })
-      .attr('dy', '0.35em')
-      .text(d => d.id);
-  }
+  // draw nodeIDs 
+  node
+    .append('text')
+    .classed('nodeText', true)
+    .style('stroke', 'black')
+    .style('fill', 'black')
+    .style('opacity', () => {
+      if (typeof drawNodeIDs === 'undefined') { return 0; }
+      return 1;
+    })
+    .attr('dx', d => {
+      if (d.id < 10) return '-0.265em';
+      return '-0.45em'
+    })
+    .attr('dy', '0.35em')
+    .text(d => d.id);
+
 
   force
     .nodes(graph.nodes)
@@ -209,16 +212,20 @@ d3.json('graph.json', function(error, graph) {
 
   svg
     .on("click", () => {
-      let newOpacity = nodeTextVisible ? 1 : 0; 
-      // Hide or show the elements based on the ID
+      let newOpacity;
+      // set the new opacity 
+      // then
+      // Update whether or not the node text is visible
+      if (typeof nodeTextVisible === 'undefined') {
+        newOpacity = 1;
+        nodeTextVisible = true;
+      } else {
+        newOpacity = 0;
+        nodeTextVisible = undefined;
+      }
+      // Hide or show the node text
       d3.selectAll('.nodeText')
           .transition().duration(100) 
           .style("opacity", newOpacity);
-      // Update whether or not the node text is visible
-      if (nodeTextVisible) {
-        nodeTextVisible = false;
-      } else {
-        nodeTextVisible = true;
-      }
   });
 });
